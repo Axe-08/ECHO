@@ -1,0 +1,204 @@
+<style>
+.slide-container {
+border: 1px solid #4A5568;
+background-color: #1A202C;
+padding: 2rem;
+border-radius: 0.5rem;
+margin-bottom: 2rem;
+color: #E2E8F0;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.slide-title {
+font-size: 2.25rem;
+font-weight: bold;
+color: #63B3ED;
+border-bottom: 2px solid #2B6CB0;
+padding-bottom: 0.5rem;
+margin-bottom: 1.5rem;
+}
+.slide-content h3 {
+font-size: 1.5rem;
+font-weight: bold;
+color: #90CDF4;
+margin-top: 1.5rem;
+margin-bottom: 1rem;
+}
+.slide-content p {
+font-size: 1.125rem;
+line-height: 1.75;
+color: #A0AEC0;
+}
+.slide-content ul {
+list-style-type: disc;
+margin-left: 1.5rem;
+font-size: 1.125rem;
+line-height: 1.75;
+color: #A0AEC0;
+}
+.slide-content li::marker {
+color: #63B3ED;
+}
+.slide-content strong {
+color: #E2E8F0;
+font-weight: 600;
+}
+.two-col {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+}
+.flowchart {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.flow-box {
+background-color: #2D3748;
+border: 1px solid #4A5568;
+border-radius: 0.5rem;
+padding: 1rem 1.5rem;
+text-align: center;
+width: 80%;
+margin-bottom: 1rem;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.flow-arrow {
+font-size: 2rem;
+color: #63B3ED;
+margin-bottom: 1rem;
+}
+</style>
+<!-- Slide 1: Title -->
+<div class="slide-container">
+<div style="text-align: center;">
+<h1 style="font-size: 4rem; font-weight: 900; color: #63B3ED;">ECHO</h1>
+<p style="font-size: 1.5rem; color: #90CDF4; margin-top: -0.5rem;">Expressive Cross-lingual Humanistic Output</p>
+<br><br>
+<p style="font-size: 1.25rem;"><strong>Akshit S Bansal -- 23ucs529</strong></p>
+<p style="font-size: 1.25rem;"><strong>Prince Gupta -- 23ucs678</strong></p>
+<p style="font-size: 1.125rem;">B.Tech Computer Science Semester Project</p>
+<!-- <p style="font-size: 1.125rem;">Seeking Mentorship From: <strong>[Professor's Name]</strong></p> -->
+</div>
+</div>
+<!-- Slide 2: The Problem -->
+<div class="slide-container">
+<h2 class="slide-title">The Problem: The Loss of Identity in Digital Voice</h2>
+<div class="slide-content">
+<p>While functional, modern voice technologies like translation and text-to-speech are often robotic and impersonal. They convey words, but fail to carry the speaker's unique vocal identity, which is a key component of human expression.</p>
+    <div class="two-col" style="margin-top: 2rem;">
+        <div>
+            <h3>Real-Time Performance</h3>
+            <p>High-quality voice synthesis is computationally expensive, making low-latency performance for live interaction a significant engineering hurdle.</p>
+        </div>
+        <div>
+            <h3>Vocal Pattern Separation</h3>
+            <p>How can we accurately capture the unique characteristics of a person's voice (its pattern and timbre) and apply them to entirely new speech content?</p>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- Slide 3: The Solution -->
+<div class="slide-container">
+<h2 class="slide-title">Proposed Solution: A Modular Voice Synthesis Pipeline</h2>
+<div class="slide-content">
+<p>This project's goal is to build a proof-of-concept application that can clone a voice from a short sample and use it for cross-lingual speech synthesis. The architecture will be designed to be modular, allowing for both real-time experimentation and high-quality offline processing.</p>
+<h3>Core Objectives:</h3>
+<ul>
+<li><strong>Implement a Voice Cloning Pipeline:</strong> Successfully use a state-of-the-art model (OpenVoice) to separate a voice's unique pattern and re-apply it to new content.</li>
+<li><strong>Build a Real-Time Audio Framework:</strong> Create a low-latency audio I/O channel to serve as the foundation for live voice processing.</li>
+<li><strong>Establish a Testbed for Evaluation:</strong> The modular design will allow for benchmarking and comparing different components to analyze their impact on quality and latency.</li>
+</ul>
+</div>
+</div>
+<!-- Slide 4: System Architecture -->
+<div class="slide-container">
+<h2 class="slide-title">System Architecture: The Asynchronous Pipeline</h2>
+<div class="flowchart">
+<div class="flow-box"><strong>Signal Processing & VAD</strong><br><small>Real-time audio capture and segmentation.</small></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-box"><strong>Speech-to-Text (STT)</strong><br><small>A faster-whisper module for rapid transcription.</small></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-box"><strong>Text-to-Text (Translation)</strong><br><small>A local transformers model for language translation.</small></div>
+<div class="flow-arrow">↓</div>
+<div class="flow-box"><strong>Speech Synthesis (TTS & Conversion)</strong><br><small>A fast TTS engine generates speech, and OpenVoice applies the vocal pattern.</small></div>
+</div>
+</div>
+<!-- Slide 5: Project Scope -->
+<div class="slide-container">
+<h2 class="slide-title">Project Scope & Phased Implementation</h2>
+<div class="slide-content two-col">
+<div>
+<h3>Phase 1: The Core Offline Pipeline</h3>
+<p><strong>Goal:</strong> Prove the fundamental concept is viable.</p>
+<p><strong>Deliverable:</strong> A script that takes an input audio file and a reference voice, and outputs a high-quality, translated audio file in the cloned voice.</p>
+</div>
+<div>
+<h3>Phase 2: Real-Time Integration</h3>
+<p><strong>Goal:</strong> Tackle the low-latency challenge.</p>
+<p><strong>Deliverable:</strong> A functional prototype that applies the Phase 1 pipeline to a live microphone stream, with initial performance benchmarks.</p>
+</div>
+</div>
+</div>
+<!-- Slide 6: Future Work & Research Potential -->
+<div class="slide-container">
+<h2 class="slide-title">Future Work & Research Potential</h2>
+<div class="slide-content">
+<p>The completed MVP serves as a strong foundation for exploring more complex challenges in generative media.</p>
+<h3>Application to Video (A/V Synchronization)</h3>
+<p>A natural extension is to apply this pipeline to video dubbing. This introduces the complex problem of synchronizing the newly generated audio with the original speaker's lip movements to maintain realism.</p>
+<h3>Enhancing Audio Realism</h3>
+<p>A potential research path is to train a second, smaller model to detect artifacts in the synthesized speech. Its feedback could be used to fine-tune the generator, a technique related to adversarial training, to produce more natural-sounding results.</p>
+</div>
+</div>
+<!-- Slide 7: Tech Stack & Timeline -->
+<div class="slide-container">
+<h2 class="slide-title">Technology Stack & Timeline</h2>
+<div class="slide-content two-col">
+<div>
+<h3>Core Technologies</h3>
+<ul>
+<li><strong>Language:</strong> Python</li>
+<li><strong>AI/ML:</strong> PyTorch, OpenVoice, faster-whisper, Transformers</li>
+<li><strong>Audio:</strong> PyAudio, NumPy, sounddevice</li>
+<li><strong>UI:</strong> Gradio (for prototyping)</li>
+</ul>
+</div>
+<div>
+<h3>12-Week Timeline</h3>
+<ul>
+<li><strong>Weeks 1-2:</strong> Research & Setup</li>
+<li><strong>Weeks 3-5:</strong> Phase 1: Offline Pipeline</li>
+<li><strong>Weeks 6-9:</strong> Phase 2: Real-Time Integration</li>
+<li><strong>Weeks 10-11:</strong> Future Work Exploration</li>
+<li><strong>Week 12:</strong> Final Report & Presentation</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Slide 8: Mentorship & Collaboration -->
+<div class="slide-container">
+<h2 class="slide-title">Mentorship & Collaboration</h2>
+<div class="slide-content">
+<h3>My Skills:</h3>
+<p>Proficient in Python, Experience with creating a music recommendation system using audio processing and RAG pipelines, Full stack Web/App development</p>
+<h3>Seeking your guidance on:</h3>
+<ul>
+<li>Designing robust, low-latency pipelines for processing streaming data.</li>
+<li>Strategies for solving the audio-visual synchronization challenge in the video dubbing context.</li>
+<li>Effective methods for evaluating the perceptual quality of generative audio and exploring techniques to reduce artifacts.</li>
+</ul>
+</div>
+</div>
+<!-- Slide 9: Expected Outcomes -->
+<div class="slide-container">
+<h2 class="slide-title">Expected Outcomes</h2>
+<div class="slide-content">
+<ul>
+<li><strong>Deliverable:</strong> A functional proof-of-concept application and a well-documented GitHub repository.</li>
+<li><strong>Project Report:</strong> A comprehensive document detailing the system's architecture, implementation challenges, performance benchmarks, and a discussion of ethical considerations.</li>
+<li><strong>Learning Goals:</strong> To gain deep, practical experience in integrating complex AI models, real-time signal processing, and performance optimization for machine learning systems.</li>
+</ul>
+</div>
+</div>
+
